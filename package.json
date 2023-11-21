@@ -12,6 +12,7 @@
     "url": "https://github.com/Agamnentzar/ag-psd"
   },
   "scripts": {
+    "dev": "ts-node-dev --respawn src/test/tests.ts",
     "ts": "npm run clean && tsc --watch --project tsconfig.json",
     "test": "mocha --watch --timeout 20000 -R dot dist/test",
     "lint": "tslint -c tslint.json src/ts/**/*.ts",

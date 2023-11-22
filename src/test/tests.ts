@@ -1,9 +1,9 @@
 import path = require('path');
+import fs = require('fs')
 import { ReadOptions } from '../psd';
 
 import {
-	readPsdFromFile
-	} from './common';
+	readPsdFromFile} from './common';
 
 
 const testFilesPath = path.join(__dirname, '..', '..', 'test');
@@ -17,6 +17,7 @@ const opts: ReadOptions = {
 
 const blendModePSDPath = path.join(readFilesPath, 'blend-mode', 'src.psd')
 
+// @ts-ignore
 const psd = readPsdFromFile(blendModePSDPath, { ...opts });
 
 const filterFXPSDPath = path.join(readFilesPath, 'filterFX', 'src.psd')
@@ -24,4 +25,5 @@ const filterFXPSDPath = path.join(readFilesPath, 'filterFX', 'src.psd')
 // @ts-ignore
 const filerFXPSD = readPsdFromFile(filterFXPSDPath, { ...opts });
 
-console.log(psd)
+
+

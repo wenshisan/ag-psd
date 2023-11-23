@@ -308,6 +308,7 @@ export function readPsd(reader: PsdReader, options: ReadOptions = {}) {
 				skipBytes(reader, 1);
 			}
 
+			// readAdditionalLayerInfo(reader, psd, psd, opt);
 			if (left() >= 12) {
 				readAdditionalLayerInfo(reader, psd, psd, opt);
 			} else {
@@ -578,7 +579,7 @@ function readLayerChannelImageData(
 				targetData = undefined;
 
 				if (options.throwForMissingFeatures) {
-					throw new Error(`Channel not supported: ${channel.id}`);
+					// throw new Error(`Channel not supported: ${channel.id}`);
 				}
 			}
 
@@ -653,6 +654,9 @@ function readAdditionalLayerInfo(reader: PsdReader, target: LayerAdditionalInfo,
 	// `largeAdditionalInfoKeys` fallback, because some keys don't have 8B64 signature even when they are 64bit
 	const u64 = sig === '8B64' || (options.large && largeAdditionalInfoKeys.indexOf(key) !== -1);
 
+	if (key == 'PlLd' || key == 'SoLd') {
+		console.log(key)
+	}
 	readSection(reader, 2, left => {
 		const handler = infoHandlersMap[key];
 

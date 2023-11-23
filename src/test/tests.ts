@@ -4,6 +4,7 @@ import { ReadOptions } from '../psd';
 
 import {
 	readPsdFromFile} from './common';
+import path = require('path');
 
 
 // const testFilesPath = path.join(__dirname, '..', '..', 'test');
@@ -26,6 +27,11 @@ const files = getFiles(filePath)
 
 for (let index = 0; index < files.length; index++) {
 	const fileActualPath = files[index];
+	const extName = path.extname(fileActualPath)
+	
+	if (extName.toLowerCase() == '.psd') {
+		
+	console.log(fileActualPath)
 	// const fileActualPath = path.join(filePath , fileName)
 	const psdFile = readPsdFromFile(fileActualPath, { ...opts });
 	const dataFIlePath = fileActualPath + '.data.json'
@@ -42,7 +48,9 @@ for (let index = 0; index < files.length; index++) {
 	const jsonData = JSON.stringify(psdFile,null,2)
 
 	
-	fs.writeFileSync(dataFIlePath,jsonData)
+    fs.writeFileSync(dataFIlePath, jsonData)
+		
+	}
 }
 
 // const filterFXPSDPath = path.join(readFilesPath, 'filterFX', 'src.psd')

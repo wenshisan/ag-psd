@@ -1,0 +1,36 @@
+{
+	"children": [
+		{
+			"type": "layer",
+			"visible": true,
+			"opacity": 1,
+			"blendingMode": "normal",
+			"name": "滤镜",
+			"left": 0,
+			"right": 756,
+			"top": 0,
+			"bottom": 500,
+			"height": 500,
+			"width": 756,
+			"mask": {},
+			"image": {}
+		}
+	],
+	"document": {
+		"width": 756,
+		"height": 500,
+		"resources": {
+			"layerComps": [],
+			"resolutionInfo": {
+				"h_res": 72,
+				"h_res_unit": 1,
+				"width_unit": 2,
+				"v_res": 72,
+				"v_res_unit": 1,
+				"height_unit": 2
+			},
+			"guides": [],
+			"slices": []
+		}
+	}
+}

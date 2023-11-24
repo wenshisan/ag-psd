@@ -29,7 +29,12 @@ for (let index = 0; index < files.length; index++) {
 	const fileActualPath = files[index];
 	const extName = path.extname(fileActualPath)
 	
-	if (extName.toLowerCase() == '.psd') {
+	let allowRead = extName.toLowerCase() == '.psd'
+	const dev = process.env.TS_NODE_DEV == 'true'
+	if (dev) {
+		allowRead = allowRead &&  fileActualPath.includes('滤镜')
+	}
+	if (allowRead) {
 		
 	console.log(fileActualPath)
 	// const fileActualPath = path.join(filePath , fileName)

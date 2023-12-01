@@ -49,15 +49,30 @@ for (let index = 0; index < files.length; index++) {
 	const psdFile = readPsdFromFile(fileActualPath, { ...opts });
 	const dataFIlePath = fileActualPath + '.data.json'
 	delete psdFile.canvas
+	
 	psdFile.children?.forEach(x => {
 		delete x.canvas
 		delete x.mask?.canvas
 		delete x.engineData
+		delete x.imageData
+		if (x.mask) {
+			delete x.mask.imageData
+		}
 	})
 
 	delete psdFile.imageResources
 	
 	delete psdFile.engineData
+	delete psdFile.imageData
+		
+	if (psdFile.mask) {
+		delete psdFile.mask.imageData
+		}
+	if (psdFile.linkedFiles) {
+		psdFile.linkedFiles.forEach(l => {
+			delete l.data
+		})
+	}
 	const jsonData = JSON.stringify(psdFile)
 
 	

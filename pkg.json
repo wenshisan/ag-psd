@@ -1,0 +1,13 @@
+{
+	"name": "some-name",
+	"version": "1.0.0",
+	"description": "Some description",
+	"author": "Me",
+	"license": "UNLICENSED",
+	"private": true,
+	"pkg": {
+	  "assets": [
+		"./node_modules/canvas/build/Release/**/*"
+	  ]
+	}
+  }

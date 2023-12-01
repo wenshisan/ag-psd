@@ -7,7 +7,7 @@
 	"private": true,
 	"pkg": {
 	  "assets": [
-		"./node_modules/canvas/build/Release/**/*"
+		"./out/canvas/Release/**/*"
 	  ]
 	}
   }

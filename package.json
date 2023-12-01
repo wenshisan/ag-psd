@@ -12,7 +12,8 @@
     "url": "https://github.com/Agamnentzar/ag-psd"
   },
   "scripts": {
-    "dev": "npm run clean && ts-node-dev --respawn src/test/tests.ts",
+    "pack": "pkg -o app -t node14-win -c pkg.json out/index.js",
+    "dev": "npm run clean && ts-node-dev --respawn src/test/tests.ts -p C:\\users\\Jackson\\OneDrive\\shhz\\ps试题源文件\\ps资料\\ps试题源文件",
     "ts": "npm run clean && tsc --watch --project tsconfig.json",
     "test": "mocha --watch --timeout 20000 -R dot dist/test",
     "lint": "tslint -c tslint.json src/ts/**/*.ts",
@@ -37,14 +38,17 @@
   "devDependencies": {
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.11.18",
+    "@types/yargs": "^17.0.32",
     "@webpack-cli/generators": "^3.0.7",
     "browserify": "^17.0.0",
+    "canvas": "^2.11.2",
     "chai": "^4.3.7",
     "mocha": "^6.2.0",
     "source-map-support": "^0.5.21",
     "tslint": "^6.1.3",
     "typescript": "^4.9.4",
-    "webpack": "^5.89.0"
+    "webpack": "^5.89.0",
+    "yargs": "^17.7.2"
   },
   "dependencies": {
     "@types/base64-js": "^1.3.0",

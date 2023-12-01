@@ -1,5 +1,6 @@
 // import path = require('path');
 import fs = require('fs')
+import yargs = require('yargs')
 import { ReadOptions } from '../psd';
 
 import {
@@ -17,12 +18,17 @@ const opts: ReadOptions = {
 	useImageData: true
 };
 
+const options = yargs
+ .usage("Usage: -p <path>")
+ .option("p", { alias: "path", describe: "psd folder", type: "string", demandOption: true })
+ .argv;
 // const blendModePSDPath = path.join(readFilesPath, 'blend-mode', 'src.psd')
 
 // // @ts-ignore
 // const psd = readPsdFromFile(blendModePSDPath, { ...opts });
 
-const filePath = 'C:\\Users\\Jackson\\OneDrive\\shhz\\ps试题源文件\\ps资料\\ps试题源文件'
+// @ts-ignore
+const filePath = options.path
 
 const files = getFiles(filePath)
 
@@ -35,8 +41,9 @@ for (let index = 0; index < files.length; index++) {
 	if (dev) {
 		allowRead = allowRead &&  fileActualPath.includes('滤镜')
 	}
+
+
 	if (allowRead) {
-		
 	console.log(fileActualPath)
 	// const fileActualPath = path.join(filePath , fileName)
 	const psdFile = readPsdFromFile(fileActualPath, { ...opts });
@@ -51,7 +58,7 @@ for (let index = 0; index < files.length; index++) {
 	delete psdFile.imageResources
 	
 	delete psdFile.engineData
-	const jsonData = JSON.stringify(psdFile,null,2)
+	const jsonData = JSON.stringify(psdFile)
 
 	
     fs.writeFileSync(dataFIlePath, jsonData)

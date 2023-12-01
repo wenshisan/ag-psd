@@ -6,8 +6,6 @@
 	"license": "UNLICENSED",
 	"private": true,
 	"pkg": {
-	  "assets": [
-		"./out/canvas/Release/**/*"
-	  ]
+		"assets": "node_modules/canvas/**/*"
 	}
-  }
+}

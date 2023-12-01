@@ -14,6 +14,7 @@ import path = require('path');
 const opts: ReadOptions = {
 	throwForMissingFeatures: true,
 	logMissingFeatures: true,
+	useImageData: true
 };
 
 // const blendModePSDPath = path.join(readFilesPath, 'blend-mode', 'src.psd')

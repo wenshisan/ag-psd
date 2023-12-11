@@ -20,32 +20,21 @@ const opts: ReadOptions = {
 
 const options = yargs
  .usage("Usage: -p <path>")
- .option("p", { alias: "path", describe: "psd folder", type: "string", demandOption: true })
+ .option("p", { alias: "path", describe: "psd path", type: "string", demandOption: true })
  .argv;
 // const blendModePSDPath = path.join(readFilesPath, 'blend-mode', 'src.psd')
 
 // // @ts-ignore
 // const psd = readPsdFromFile(blendModePSDPath, { ...opts });
 
-// @ts-ignore
-const filePath = options.path
+//2023年12月7日
+// 文档缺失 height width  单位 名称 大小
+// 
 
-const files = getFiles(filePath)
-
-for (let index = 0; index < files.length; index++) {
-	const fileActualPath = files[index];
-	const extName = path.extname(fileActualPath)
-	
-	let allowRead = extName.toLowerCase() == '.psd'
-	const dev = process.env.TS_NODE_DEV == 'true'
-	if (dev) {
-		allowRead = allowRead &&  fileActualPath.includes('滤镜')
-	}
-
-
-	if (allowRead) {
-	console.log(fileActualPath)
-	// const fileActualPath = path.join(filePath , fileName)
+/**
+ * 获取文件数据
+*/
+function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
 	const psdFile = readPsdFromFile(fileActualPath, { ...opts });
 	const dataFIlePath = fileActualPath + '.data.json'
 	delete psdFile.canvas
@@ -74,19 +63,50 @@ for (let index = 0; index < files.length; index++) {
 		})
 	}
 	const jsonData = JSON.stringify(psdFile)
+    if (writeToLocal) {
+		fs.writeFileSync(dataFIlePath, jsonData)
+	}
 
+	return jsonData
+}
+// @ts-ignore
+const filePath = options.path
+
+const fileExtName = path.extname(filePath)
+// 单个文件
+const isSingleFfile = fileExtName.toLowerCase() == '.psd'
+
+if (isSingleFfile) {
+	const singleFileData = getPSDJsonData(filePath)
+	console.log(singleFileData)
+}else {
+const files = getFiles(filePath)
+
+
+for (let index = 0; index < files.length; index++) {
+	const fileActualPath = files[index];
+	const extName = path.extname(fileActualPath)
 	
-    fs.writeFileSync(dataFIlePath, jsonData)
+	let allowRead = extName.toLowerCase() == '.psd'
+	const dev = process.env.TS_NODE_DEV == 'true'
+	if (dev) {
+		allowRead = allowRead &&  fileActualPath.includes('滤镜')
+	}
+
+
+	if (allowRead) {
+	 console.log(fileActualPath)
+		getPSDJsonData(fileActualPath, true)
 		
 	}
 }
-
+}
 // const filterFXPSDPath = path.join(readFilesPath, 'filterFX', 'src.psd')
 
 // // @ts-ignore
 // const filerFXPSD = readPsdFromFile(filterFXPSDPath, { ...opts });
 
-console.log('finished')
+// console.log('finished')
 
 
 

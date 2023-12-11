@@ -12,7 +12,7 @@
     "url": "https://github.com/Agamnentzar/ag-psd"
   },
   "scripts": {
-    "pack": "pkg -o app -t node14-win -c pkg.json out/index.js",
+    "pack": "pkg -o PSDData -t node14-win -c pkg.json out/index.js",
     "dev": "npm run clean && ts-node-dev --respawn src/test/tests.ts -p C:\\users\\Jackson\\OneDrive\\shhz\\ps试题源文件\\ps资料\\ps试题源文件",
     "ts": "npm run clean && tsc --watch --project tsconfig.json",
     "test": "mocha --watch --timeout 20000 -R dot dist/test",

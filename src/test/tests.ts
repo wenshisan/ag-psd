@@ -1,22 +1,24 @@
 // import path = require('path');
 import fs = require('fs')
 import yargs = require('yargs')
-import { ReadOptions } from '../psd';
+// import { ReadOptions } from '../psd';
 
-import {
-	readPsdFromFile} from './common';
+// import {
+// 	readPsdFromFile} from './common';
 import path = require('path');
+
+import { readPsd } from '..';
 
 
 // const testFilesPath = path.join(__dirname, '..', '..', 'test');
 // const readFilesPath = path.join(testFilesPath, 'read');
 // const readWriteFilesPath = path.join(testFilesPath, 'read-write');
 // const resultsFilesPath = path.join(__dirname, '..', '..', 'results');
-const opts: ReadOptions = {
-	throwForMissingFeatures: true,
-	logMissingFeatures: true,
-	useImageData: true
-};
+// const opts: ReadOptions = {
+// 	throwForMissingFeatures: true,
+// 	logMissingFeatures: true,
+// 	useImageData: true
+// };
 
 const options = yargs
  .usage("Usage: -p <path>")
@@ -35,7 +37,9 @@ const options = yargs
  * 获取文件数据
 */
 function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
-	const psdFile = readPsdFromFile(fileActualPath, { ...opts });
+	const buffer = fs.readFileSync(fileActualPath);
+	const psdFile = readPsd(buffer, { useImageData: true, skipLayerImageData: true, skipCompositeImageData: true, skipThumbnail: true });
+	// const psdFile = readPsdFromFile(fileActualPath, { ...opts });
 	const dataFIlePath = fileActualPath + '.data.json'
 	delete psdFile.canvas
 	

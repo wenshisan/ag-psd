@@ -655,7 +655,7 @@ function readAdditionalLayerInfo(reader: PsdReader, target: LayerAdditionalInfo,
 	const u64 = sig === '8B64' || (options.large && largeAdditionalInfoKeys.indexOf(key) !== -1);
 
 	if (key == 'PlLd' || key == 'SoLd') {
-		console.log(key)
+		// console.log(key)
 	}
 	readSection(reader, 2, left => {
 		const handler = infoHandlersMap[key];

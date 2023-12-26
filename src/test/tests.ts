@@ -39,6 +39,14 @@ const options = yargs
 function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
 	const buffer = fs.readFileSync(fileActualPath);
 	const psdFile = readPsd(buffer, { useImageData: true, skipLayerImageData: true, skipCompositeImageData: true, skipThumbnail: true });
+
+	const psd = require("psd")
+	// @ts-ignore
+	var psdJSFile = psd.fromFile(fileActualPath);
+	psdJSFile.parse();
+	
+    // @ts-ignore
+    const psdJSFIleData = psdJSFile.tree().export();
 	// const psdFile = readPsdFromFile(fileActualPath, { ...opts });
 	const dataFIlePath = fileActualPath + '.data.json'
 	delete psdFile.canvas
@@ -53,7 +61,8 @@ function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
 		}
 	})
 
-	delete psdFile.imageResources
+
+	// delete psdFile.imageResources
 	
 	delete psdFile.engineData
 	delete psdFile.imageData
@@ -64,6 +73,26 @@ function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
 	if (psdFile.linkedFiles) {
 		psdFile.linkedFiles.forEach(l => {
 			delete l.data
+		})
+	}
+
+	if (psdFile.filterEffectsMasks) {
+		psdFile.filterEffectsMasks.forEach(x => {
+		if (x.channels) {
+				x.channels.forEach(c => {
+					if (c) {
+						// @ts-ignore
+						delete c.data
+					}
+				})
+		}
+		})
+	}
+
+	if (psdFile.filterEffectsMasks) {
+		psdFile.filterEffectsMasks.forEach(l => {
+			// @ts-ignore
+			delete l.extra?.data
 		})
 	}
 	const jsonData = JSON.stringify(psdFile)

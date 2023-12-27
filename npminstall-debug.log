@@ -1,25 +1,17 @@
 {
   root: 'E:\\Users\\wen\\Documents\\GitHub\\ag-psd',
   registry: 'https://registry.npmmirror.com',
-  pkgs: [
-    {
-      name: 'psd',
-      version: 'types',
-      type: 'tag',
-      alias: undefined,
-      arg: [Result]
-    }
-  ],
+  pkgs: [],
   production: false,
   cacheStrict: false,
   cacheDir: 'C:\\Users\\wen\\.npminstall_tarball',
   env: {
     npm_config_registry: 'https://registry.npmmirror.com',
-    npm_config_argv: '{"remain":[],"cooked":["--fix-bug-versions","--china","--userconfig=C:\\\\Users\\\\wen\\\\.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","psd@types","--save-dev"],"original":["--fix-bug-versions","--china","--userconfig=C:\\\\Users\\\\wen\\\\.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","psd@types","--save-dev"]}',
-    npm_config_user_agent: 'npminstall/7.11.1 npm/? node/v20.10.0 win32 x64',
+    npm_config_argv: '{"remain":[],"cooked":["--fix-bug-versions","--china","--userconfig=C:\\\\Users\\\\wen\\\\.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","-g","pkg@4.5.1"],"original":["--fix-bug-versions","--china","--userconfig=C:\\\\Users\\\\wen\\\\.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","-g","pkg@4.5.1"]}',
+    npm_config_user_agent: 'npminstall/7.11.1 npm/? node/v20.10.0 win32 ia32',
     npm_config_cache: 'C:\\Users\\wen\\.npminstall_tarball',
-    NODE: 'E:\\Program Files\\nodejs\\node.exe',
-    npm_node_execpath: 'E:\\Program Files\\nodejs\\node.exe',
+    NODE: 'E:\\Program Files (x86)\\nodejs\\node.exe',
+    npm_node_execpath: 'E:\\Program Files (x86)\\nodejs\\node.exe',
     npm_execpath: 'C:\\Users\\wen\\AppData\\Roaming\\npm\\node_modules\\cnpm\\node_modules\\npminstall\\bin\\install.js',
     npm_config_userconfig: 'C:\\Users\\wen\\.cnpmrc',
     npm_config_disturl: 'https://cdn.npmmirror.com/binaries/node',
@@ -193,11 +185,13 @@
   ignoreScripts: false,
   foregroundScripts: false,
   ignoreOptionalDependencies: false,
-  detail: false,
+  detail: true,
   forceLinkLatest: false,
   trace: false,
   engineStrict: false,
   registryOnly: false,
   client: false,
-  autoFixVersion: [Function: autoFixVersion]
+  autoFixVersion: [Function: autoFixVersion],
+  targetDir: null,
+  binDir: null
 }

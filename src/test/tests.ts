@@ -40,13 +40,35 @@ function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
 	const buffer = fs.readFileSync(fileActualPath);
 	const psdFile = readPsd(buffer, { useImageData: true, skipLayerImageData: true, skipCompositeImageData: true, skipThumbnail: true });
 
-	const psd = require("psd")
-	// @ts-ignore
-	var psdJSFile = psd.fromFile(fileActualPath);
-	psdJSFile.parse();
+
+
+	//#region 
+// const psd = require("psd")
+// @ts-ignore
+// var psdJSFile = psd.fromFile(fileActualPath);
+// psdJSFile.parse();
+// const descendants = psdJSFile
+// .tree()
+// .descendants()
+// .filter((x:any) => x.type == 'layer')
+
+// 	 for (let index = 0; index < descendants.length; index++) {
+// 	  const node = descendants[index]
+  
+// 	  const objectEffects = node.get('objectEffects')
+// 	  if (objectEffects) {
+// 		objectEffects.data.class = undefined
+// 		objectEffects.data.Scl = undefined
+// 		objectEffects.data.masterFXSwitch = undefined
+// 		// @ts-ignore
+// 		const effects = JSON.stringify(objectEffects.data, null, 2)
+		
+// 	  }}
+
+// @ts-ignore
+// const psdJSFIleData = psdJSFile.tree().export();
+	//#endregion
 	
-    // @ts-ignore
-    const psdJSFIleData = psdJSFile.tree().export();
 	// const psdFile = readPsdFromFile(fileActualPath, { ...opts });
 	const dataFIlePath = fileActualPath + '.data.json'
 	delete psdFile.canvas
@@ -63,6 +85,8 @@ function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
 
 
 	// delete psdFile.imageResources
+	delete psdFile.imageResources?.xmpMetadata
+	delete psdFile.imageResources?.imageReadyDataSets
 	
 	delete psdFile.engineData
 	delete psdFile.imageData

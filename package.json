@@ -14,7 +14,7 @@
   "scripts": {
     "pack": "pkg -o PSDData -t node14-win -c pkg.json out/index.js",
     "pack:x86": "pkg -o PSDData -t node14-win-x86 -c pkg.json out/index.js",
-    "dev": "npm run clean && ts-node-dev --respawn src/test/tests.ts -p E:\\Users\\wen\\Documents\\PS\\自己出的20题\\素材\\第1题\\PS（效果）.psd",
+    "dev": "npm run clean && ts-node-dev --respawn src/test/tests.ts -p E:\\Users\\wen\\Documents\\PS\\自己出的20题\\素材\\第1题\\PStest.psd",
     "ts": "npm run clean && tsc --watch --project tsconfig.json",
     "test": "mocha --watch --timeout 20000 -R dot dist/test",
     "lint": "tslint -c tslint.json src/ts/**/*.ts",
@@ -49,7 +49,6 @@
     "chai": "^4.3.7",
     "mocha": "^6.2.0",
     "pako": "^2.1.0",
-    "pkg": "^5.8.1",
     "psd": "^3.4.0",
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.5.1",

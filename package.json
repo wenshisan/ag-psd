@@ -14,7 +14,7 @@
   "scripts": {
     "pack": "pkg -o PSDData -t node14-win -c pkg.json out/index.js",
     "pack:x86": "pkg -o PSDData -t node14-win-x86 -c pkg.json out/index.js",
-    "dev": "npm run clean && ts-node-dev --respawn src/test/tests.ts -p E:\\Users\\wen\\Documents\\PS\\自己出的20题\\素材\\第1题\\PStest.psd",
+    "dev": "npm run clean && ts-node-dev --respawn src/test/tests.ts -p E:\\Users\\wen\\Documents\\PS\\教材10题\\效果文件\\模拟试卷六\\PS（效果）.psd",
     "ts": "npm run clean && tsc --watch --project tsconfig.json",
     "test": "mocha --watch --timeout 20000 -R dot dist/test",
     "lint": "tslint -c tslint.json src/ts/**/*.ts",

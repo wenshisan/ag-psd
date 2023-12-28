@@ -33,10 +33,19 @@ const options = yargs
 // 文档缺失 height width  单位 名称 大小
 // 
 
+function rgbToHex(r:number, g:number, b:number) {
+	return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+  }
+  
+
 /**
  * 获取文件数据
 */
 function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
+
+	var hexColor = rgbToHex(249.99618530273438,181.99722290039062,73.99887084960938)
+	console.log(hexColor)
+	
 	const buffer = fs.readFileSync(fileActualPath);
 	const psdFile = readPsd(buffer, { useImageData: true, skipLayerImageData: true, skipCompositeImageData: true, skipThumbnail: true });
 
@@ -44,7 +53,7 @@ function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
 
 	//#region 
 // const psd = require("psd")
-// @ts-ignore
+// // @ts-ignore
 // var psdJSFile = psd.fromFile(fileActualPath);
 // psdJSFile.parse();
 // const descendants = psdJSFile
@@ -65,7 +74,7 @@ function getPSDJsonData(fileActualPath: string, writeToLocal = false): string {
 		
 // 	  }}
 
-// @ts-ignore
+// // @ts-ignore
 // const psdJSFIleData = psdJSFile.tree().export();
 	//#endregion
 	
